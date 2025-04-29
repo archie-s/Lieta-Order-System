@@ -1,160 +1,177 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Lieta's Food Stand App</title>
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #eaf6ff;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lieta's Food Stand App</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
 
-        nav {
-            width: 100%;
-            background-color: #305a5a;
-            padding: 10px 0;
-        }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #eaf6ff;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      overflow-x: hidden;
+    }
 
-        nav ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            text-align: center;
-        }
+    nav {
+      width: 100%;
+      background-color: #305a5a;
+      padding: 10px 0;
+    }
 
-        nav ul li {
-            font-size: 32px;
-            font-family: 'Georgia', serif;
-            color: #ff8c00;
-        }
+    nav ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      text-align: center;
+    }
 
-        h1 {
-            margin-top: 30px;
-            color: #333;
-        }
+    nav ul li {
+      font-size: 32px;
+      font-family: 'Georgia', serif;
+      color: #ff8c00;
+    }
 
-        form {
-            background: white;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 0 15px rgba(0,0,0,0.1);
-            max-width: 500px;
-            width: 90%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
+    h1 {
+      margin-top: 30px;
+      color: #333;
+      text-align: center;
+      font-size: 2rem;
+    }
 
-        label {
-            display: block;
-            margin-bottom: 15px;
-            width: 100%;
-        }
+    form {
+      background: white;
+      padding: 5vw;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+      width: 90%;
+      max-width: 500px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 40px;
+    }
 
-        input, select {
-            width: 100%;
-            padding: 10px;
-            border-radius: 6px;
-            border: 1px solid #ccc;
-            margin-top: 5px;
-        }
+    label {
+      display: block;
+      margin-bottom: 15px;
+      width: 100%;
+    }
 
-        button {
-            background-color: #ff8c00;
-            color: white;
-            border: none;
-            padding: 12px 20px;
-            border-radius: 6px;
-            font-size: 16px;
-            cursor: pointer;
-            margin-top: 10px;
-        }
+    input,
+    select,
+    button {
+      width: 100%;
+      padding: 10px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      margin-top: 5px;
+      font-size: 1rem;
+    }
 
-        button:hover {
-            background-color: #e67e00;
-        }
+    button {
+      background-color: #ff8c00;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
 
-        #orderList {
-            margin-top: 15px;
-            text-align: left;
-            width: 100%;
-        }
+    button:hover {
+      background-color: #e67e00;
+    }
 
-        .order-item {
-            margin-bottom: 5px;
-        }
+    #orderList {
+      margin-top: 15px;
+      text-align: left;
+      width: 100%;
+    }
 
-        @media (max-width: 600px) {
-            nav ul li {
-                font-size: 24px;
-            }
+    .order-item {
+      margin-bottom: 5px;
+    }
 
-            form {
-                padding: 20px;
-            }
+    @media (max-width: 600px) {
+      nav ul li {
+        font-size: 24px;
+      }
 
-            h1 {
-                font-size: 24px;
-            }
-        }
-    </style>
+      h1 {
+        font-size: 1.5rem;
+      }
+    }
+
+    @media (max-width: 400px) {
+      form {
+        padding: 15px;
+      }
+
+      nav ul li {
+        font-size: 20px;
+      }
+    }
+  </style>
 </head>
 <body>
-
-<nav>
+  <nav>
     <ul>
-        <li>Lieta's Food Stand</li>
+      <li>Lieta's Food Stand</li>
     </ul>
-</nav>
+  </nav>
 
-<h1>Place Your Order</h1>
+  <h1>Place Your Order</h1>
 
-<form id="orderForm">
+  <form id="orderForm">
     <label>Name:
-        <input type="text" id="name" required>
+      <input type="text" id="name" required />
     </label>
 
     <label>Phone Number:
-        <input type="text" id="phone" required>
+      <input type="text" id="phone" required />
     </label>
 
     <label>Menu Item:
-        <select id="item">
-            <option value="">--Select--</option>
-            <optgroup label="Smocha">
-                <option value="Smocha - everything added">Smocha - everything added</option>
-                <option value="Smocha - no sauces">Smocha - no sauces</option>
-                <option value="Smocha - no kachumbari">Smocha - no kachumbari</option>
-            </optgroup>
-            <optgroup label="Smokey">
-                <option value="Smokey pasua">Smokey pasua</option>
-                <option value="Smokey">Smokey</option>
-            </optgroup>
-            <optgroup label="Bhajia">
-                <option value="Bhajia - 20">Bhajia - 20/=</option>
-                <option value="Bhajia - 50">Bhajia - 50/=</option>
-            </optgroup>
-            <optgroup label="Soda">
-                <option value="Fanta Orange">Fanta Orange</option>
-                <option value="Fanta Passion">Fanta Passion</option>
-                <option value="Fanta Blackcurrant">Fanta Blackcurrant</option>
-                <option value="Coke">Coke</option>
-                <option value="Sprite">Sprite</option>
-            </optgroup>
-            <optgroup label="Quantity of Soda">
-                <option value="Soda 20">Ksh20/=</option>
-                <option value="Soda 50">Ksh50/=</option>
-            </optgroup>
-        </select>
+      <select id="item">
+        <option value="">--Select--</option>
+        <optgroup label="Smocha">
+          <option value="Smocha - everything added">Smocha - everything added</option>
+          <option value="Smocha - no sauces">Smocha - no sauces</option>
+          <option value="Smocha - no kachumbari">Smocha - no kachumbari</option>
+        </optgroup>
+        <optgroup label="Smokey">
+          <option value="Smokey pasua">Smokey pasua</option>
+          <option value="Smokey">Smokey</option>
+        </optgroup>
+        <optgroup label="Bhajia">
+          <option value="Bhajia - 20">Bhajia - 20/=</option>
+          <option value="Bhajia - 50">Bhajia - 50/=</option>
+        </optgroup>
+        <optgroup label="Soda">
+          <option value="Fanta Orange">Fanta Orange</option>
+          <option value="Fanta Passion">Fanta Passion</option>
+          <option value="Fanta Blackcurrant">Fanta Blackcurrant</option>
+          <option value="Coke">Coke</option>
+          <option value="Sprite">Sprite</option>
+        </optgroup>
+        <optgroup label="Quantity of Soda">
+          <option value="Soda 20">Ksh20/=</option>
+          <option value="Soda 50">Ksh50/=</option>
+        </optgroup>
+      </select>
     </label>
 
     <label>Quantity:
-        <input type="number" id="quantity" min="1">
+      <input type="number" id="quantity" min="1" />
     </label>
 
     <button type="button" id="addItemBtn">Add Item</button>
@@ -162,67 +179,67 @@
     <div id="orderList"></div>
 
     <label>Arrival Time:
-        <input type="time" id="time" required>
+      <input type="time" id="time" required />
     </label>
 
     <button type="submit">Send Order</button>
-</form>
+  </form>
 
-<script>
+  <script>
     const orderList = [];
     const orderListDiv = document.getElementById('orderList');
 
     document.getElementById('addItemBtn').addEventListener('click', function () {
-        const itemSelect = document.getElementById('item');
-        const itemText = itemSelect.options[itemSelect.selectedIndex].text;
-        const quantity = document.getElementById('quantity').value;
+      const itemSelect = document.getElementById('item');
+      const itemText = itemSelect.options[itemSelect.selectedIndex].text;
+      const quantity = document.getElementById('quantity').value;
 
-        if (itemSelect.selectedIndex !== 0 && quantity > 0) {
-            orderList.push(`${quantity} x ${itemText}`);
-            displayOrderList();
-            itemSelect.selectedIndex = 0;
-            document.getElementById('quantity').value = '';
-        }
+      if (itemSelect.selectedIndex !== 0 && quantity > 0) {
+        orderList.push(`${quantity} x ${itemText}`);
+        displayOrderList();
+        itemSelect.selectedIndex = 0;
+        document.getElementById('quantity').value = '';
+      }
     });
 
     function displayOrderList() {
-        orderListDiv.innerHTML = "<strong>Current Order:</strong><ul>" +
-            orderList.map(item => `<li class="order-item">${item}</li>`).join('') +
-            "</ul>";
+      orderListDiv.innerHTML =
+        "<strong>Current Order:</strong><ul>" +
+        orderList.map(item => `<li class="order-item">${item}</li>`).join('') +
+        "</ul>";
     }
 
     document.getElementById('orderForm').addEventListener('submit', function (event) {
-        event.preventDefault();
+      event.preventDefault();
 
-        const name = document.getElementById('name').value.trim();
-        const phone = document.getElementById('phone').value.trim();
-        const time = document.getElementById('time').value;
+      const name = document.getElementById('name').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+      const time = document.getElementById('time').value;
 
-        let itemsText = orderList.length > 0 ? orderList.join(", ") : (() => {
-            const itemSelect = document.getElementById('item');
-            const itemText = itemSelect.options[itemSelect.selectedIndex].text;
-            const quantity = document.getElementById('quantity').value;
-            if (!itemText || quantity <= 0 || itemSelect.selectedIndex === 0) {
-                alert("Please select an item and quantity.");
-                return null;
-            }
-            return `${quantity} x ${itemText}`;
-        })();
+      let itemsText = orderList.length > 0 ? orderList.join(", ") : (() => {
+        const itemSelect = document.getElementById('item');
+        const itemText = itemSelect.options[itemSelect.selectedIndex].text;
+        const quantity = document.getElementById('quantity').value;
+        if (!itemText || quantity <= 0 || itemSelect.selectedIndex === 0) {
+          alert("Please select an item and quantity.");
+          return null;
+        }
+        return `${quantity} x ${itemText}`;
+      })();
 
-        if (!itemsText) return;
+      if (!itemsText) return;
 
-        const vendorPhoneNumber = "254768608715";
-        const message = `${name},\n${phone}, \norder: ${itemsText}. \nI'll arrive by ${time}.`;
-        const encodedMessage = encodeURIComponent(message);
-        const whatsappLink = `https://wa.me/${vendorPhoneNumber}?text=${encodedMessage}`;
+      const vendorPhoneNumber = "254768608715";
+      const message = `${name},\n${phone}, \norder: ${itemsText}. \nI'll arrive by ${time}.`;
+      const encodedMessage = encodeURIComponent(message);
+      const whatsappLink = `https://wa.me/${vendorPhoneNumber}?text=${encodedMessage}`;
 
-        window.open(whatsappLink, '_blank');
+      window.open(whatsappLink, '_blank');
 
-        orderList.length = 0;
-        orderListDiv.innerHTML = "";
-        document.getElementById('orderForm').reset();
+      orderList.length = 0;
+      orderListDiv.innerHTML = "";
+      document.getElementById('orderForm').reset();
     });
-</script>
-
+  </script>
 </body>
 </html>
