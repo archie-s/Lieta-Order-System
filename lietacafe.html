@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lieta's Food Stand App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: aliceblue;
+        }
+        .order-item {
+            margin-bottom: 5px;
+        }
+        nav ul {
+            background-color: rgb(48, 90, 90);
+            position: relative;
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+        nav ul li {
+            font-size: 30px;
+            font-family: 'Times New Roman', Times, serif;
+            color: rgb(255, 140, 0);
+            display: inline;
+            padding: 10px;
+        }
+        @media (max-width: 600px) {
+            nav ul li {
+                display: block;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+<nav>
+    <ul>
+        <li>Lieta's Food Stand</li>
+    </ul>
+</nav>
+        <h1>Place Your Order</h1>
+    <form id="orderForm">
+        <label>Name: <input type="text" id="name" required></label><br><br>
+        <label>Phone Number: <input type="text" id="phone" required></label><br><br>
+        <label>Menu Item:
+        <select id="item" >
+            <option value="">--Select--</option>
+            <optgroup label="Smocha">
+            <option value="Smocha - everything added">Smocha - everything added</option>
+            <option value="Smocha - no sauces">Smocha - no sauces</option>
+            <option value="Smocha - no kachumbari">Smocha - no kachumbari</option>
+            </optgroup>
+            <optgroup label="Smokey">
+            <option value="Smokey pasua">Smokey pasua</option>
+            <option value="Smokey">Smokey</option>
+            </optgroup>
+            <optgroup label="Bhajia">
+            <option value="Bhajia - 20">Bhajia - 20/=</option>
+            <option value="Bhajia - 50">Bhajia - 50/=</option>
+            </optgroup>
+            <optgroup label="Soda">
+            <option value="Fanta Orange">Fanta Orange</option>
+            <option value="Fanta Passion">Fanta Passion</option>
+            <option value="Fanta Blackcurrant">Fanta Blackcurrant</option>
+            <option value="Coke">Coke</option>
+            <option value="Sprite">Sprite</option>
+            </optgroup>
+            <optgroup label="Quantity of Soda">
+            <option value="Soda 20">Ksh20/=</option>
+            <option value="Soda 50">Ksh50/=</option>
+            </optgroup>
+        </select>
+        </label><br><br>
+
+        <label>Quantity: <input type="number" id="quantity" min="1"></label><br><br>
+        <button type="button" id="addItemBtn">Add Item</button><br><br>
+
+        <div id="orderList"></div><br>
+
+        <label>Arrival Time: <input type="time" id="time" required></label><br><br>
+        <button type="submit">Send Order</button>
+    </form>
+
+<script>
+    const orderList = [];
+    const orderListDiv = document.getElementById('orderList');
+
+    document.getElementById('addItemBtn').addEventListener('click', function () {
+        const itemSelect = document.getElementById('item');
+        const itemText = itemSelect.options[itemSelect.selectedIndex].text;
+        const quantity = document.getElementById('quantity').value;
+
+        if (itemText && quantity > 0) {
+            orderList.push(`${quantity} x ${itemText}`);
+            displayOrderList();
+
+            // Clear item and quantity after adding
+            itemSelect.selectedIndex = 0;
+            document.getElementById('quantity').value = '';
+        }
+        });
+
+    function displayOrderList() {
+        orderListDiv.innerHTML = "<strong>Current Order:</strong><ul>" +
+        orderList.map(item => `<li class="order-item">${item}</li>`).join('') +
+        "</ul>";
+    }
+
+    document.getElementById('orderForm').addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        const name = document.getElementById('name').value.trim();
+        const phone = document.getElementById('phone').value.trim();
+        const time = document.getElementById('time').value;
+
+        let itemsText = "";
+
+        // Use added items if any
+        if (orderList.length > 0) {
+            itemsText = orderList.join(", ");
+        } else {
+            // Use current item and quantity
+            const itemSelect = document.getElementById('item');
+            const itemText = itemSelect.options[itemSelect.selectedIndex].text;
+            const quantity = document.getElementById('quantity').value;
+
+            if (!itemText || quantity <= 0 || itemSelect.selectedIndex === 0) {
+            alert("Please select an item and quantity.");
+            return;
+            }
+
+            itemsText = `${quantity} x ${itemText}`;
+        }
+
+        const vendorPhoneNumber = "254768608715";
+        const message = `${name},\n${phone}, \norder: ${itemsText}. \nI'll arrive by ${time}.`;
+        const encodedMessage = encodeURIComponent(message);
+        const whatsappLink = `https://wa.me/${vendorPhoneNumber}?text=${encodedMessage}`;
+
+        window.open(whatsappLink, '_blank');
+
+        // Reset everything
+        orderList.length = 0;
+        orderListDiv.innerHTML = "";
+        document.getElementById('orderForm').reset();
+        });
+</script>
+
+</body>
+</html>
