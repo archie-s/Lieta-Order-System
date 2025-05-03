@@ -143,19 +143,31 @@
     <label>Menu Item:
       <select id="item">
         <option value="">--Select--</option>
-        <optgroup label="Smocha">
+        <optgroup label="Smocha - 80">
           <option value="Smocha - everything added">Smocha - everything added</option>
           <option value="Smocha - no sauces">Smocha - no sauces</option>
           <option value="Smocha - no kachumbari">Smocha - no kachumbari</option>
         </optgroup>
-        <optgroup label="Smokey">
-          <option value="Smokey pasua">Smokey pasua</option>
-          <option value="Smokey">Smokey</option>
+
+        <optgroup label="Special Smocha">
+          <option value="Special Smocha - 110">Special Smocha - 110</option>
         </optgroup>
+
+        <optgroup label="Smokie">
+          <option value="Smokie pasua">Smokie pasua - 40</option>
+          <option value="Smokie">Smokie - 40</option>
+        </optgroup>
+
+        <optgroup label="Eggs">
+          <option value="Eggs">Eggs - Ksh30</option>
+        </optgroup>
+
         <optgroup label="Bhajia">
-          <option value="Bhajia - 20">Bhajia - 20/=</option>
           <option value="Bhajia - 50">Bhajia - 50/=</option>
+          <option value="Bhajia - 100">Bhajia - 100/=</option>
+          <option value="Bhajia - 100">Bhajia - 150/=</option>
         </optgroup>
+
         <optgroup label="Soda">
           <option value="Fanta Orange">Fanta Orange</option>
           <option value="Fanta Passion">Fanta Passion</option>
@@ -163,10 +175,20 @@
           <option value="Coke">Coke</option>
           <option value="Sprite">Sprite</option>
         </optgroup>
-        <optgroup label="Quantity of Soda">
-          <option value="Soda 20">Ksh20/=</option>
-          <option value="Soda 50">Ksh50/=</option>
+
+        <optgroup label="Rolex">
+          <option value="Rolex">Rolex - 110</option>
         </optgroup>
+
+        <optgroup label="Genje Hotdog">
+          <option value="Genje Hotdog">Genje Hotdog - 70</option>
+          <option value="Genje Hotdog">Genje Hotdog - 110</option>
+        </optgroup>
+
+        <optgroup label="Genje Burger">
+          <option value="Genje Burger">Genje Burger - 100</option>
+        </optgroup>
+
       </select>
     </label>
 
@@ -229,7 +251,7 @@
 
       if (!itemsText) return;
 
-      const vendorPhoneNumber = "254768608715";
+      const vendorPhoneNumber = "254708190403";
       const message = `${name},\n${phone}, \norder: ${itemsText}. \nI'll arrive by ${time}.`;
       const encodedMessage = encodeURIComponent(message);
       const whatsappLink = `https://wa.me/${vendorPhoneNumber}?text=${encodedMessage}`;
